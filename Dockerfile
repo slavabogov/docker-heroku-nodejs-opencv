@@ -1,8 +1,6 @@
 # Inherit from Heroku's stack
-FROM heroku/cedar:14
+FROM heroku/python
 
-# Internally, we arbitrarily use port 3000
-ENV PORT 3000
 # Which version of node?
 ENV NODE_ENGINE 4.1.1
 # Locate our binaries
