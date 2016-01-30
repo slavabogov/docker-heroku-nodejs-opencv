@@ -1,5 +1,6 @@
-# Inherit from Heroku's python stack
-FROM heroku/python
+# Inherit from Heroku's node stack
+FROM heroku/nodejs
+ENV NODE_ENGINE 4.1.1
 
 # Install OpenCV
 RUN mkdir -p /app/.heroku/opencv /tmp/opencv
@@ -8,10 +9,8 @@ WORKDIR /tmp/opencv/Ubuntu
 RUN echo 'deb http://archive.ubuntu.com/ubuntu trusty multiverse' >> /etc/apt/sources.list && apt-get update
 RUN ./opencv_latest.sh
 
-# Python environment
-RUN echo 'export PYTHONPATH=${PYTHONPATH:-/app/.heroku/opencv/lib/python2.7/site-packages}' > /app/.profile.d/opencv.sh
+RUN echo "export PATH=\"/app/heroku/node/bin:/app/user/node_modules/.bin:\$PATH\"" > /app/.profile.d/nodejs.sh
 
-ONBUILD WORKDIR /app/user
-ONBUILD ADD requirements.txt /app/user/
-ONBUILD RUN /app/.heroku/python/bin/pip install -r requirements.txt
+ONBUILD ADD package.json /app/user/
+ONBUILD RUN /app/heroku/node/bin/npm install
 ONBUILD ADD . /app/user/
