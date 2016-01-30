@@ -11,6 +11,5 @@ RUN ./opencv_latest.sh
 
 RUN echo "export PATH=\"/app/heroku/node/bin:/app/user/node_modules/.bin:\$PATH\"" > /app/.profile.d/nodejs.sh
 
-ONBUILD ADD package.json /app/user/
 ONBUILD RUN /app/heroku/node/bin/npm install
 ONBUILD ADD . /app/user/
