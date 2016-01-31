@@ -11,7 +11,7 @@ RUN mkdir -p /app/.heroku/opencv /tmp/opencv
 ADD Install-OpenCV /tmp/opencv
 WORKDIR /tmp/opencv/Ubuntu
 RUN echo 'deb http://archive.ubuntu.com/ubuntu trusty multiverse' >> /etc/apt/sources.list && apt-get update
-RUN ./opencv_latest.sh
+RUN version=2.4.11 ./opencv_latest.sh
 
 # Create some needed directories
 RUN mkdir -p /app/heroku/node /app/.profile.d
