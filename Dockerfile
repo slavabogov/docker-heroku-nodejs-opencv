@@ -23,7 +23,7 @@ RUN curl -s https://s3pository.heroku.com/node/v$NODE_ENGINE/node-v$NODE_ENGINE-
 # Export the node path in .profile.d
 RUN echo "export PATH=\"/app/heroku/node/bin:/app/user/node_modules/.bin:\$PATH\"" > /app/.profile.d/nodejs.sh
 
-RUN echo "export PKG_CONFIG_PATH=\"/app/.heroku/opencv/lib/pkgconfig\"" > /app/.profile.d/nodejs.sh
+RUN echo "export PKG_CONFIG_PATH=\"/app/.heroku/opencv/lib/pkgconfig\"" >> /app/.profile.d/nodejs.sh
 
 ONBUILD ADD package.json /app/user/
 ONBUILD RUN /app/heroku/node/bin/npm install
