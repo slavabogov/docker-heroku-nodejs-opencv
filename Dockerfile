@@ -2,7 +2,7 @@
 FROM heroku/python
 
 # Which version of node?
-ENV NODE_ENGINE 4.1.1
+ENV NODE_ENGINE 9.4.0
 # Locate our binaries
 ENV PATH /app/heroku/node/bin/:/app/user/node_modules/.bin:$PATH
 
